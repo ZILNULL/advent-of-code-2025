@@ -1,0 +1,2 @@
+# Advent of Code - 2025
+This is a repository of the code for all of the puzzles in the Advent of Code 2025 challenge. Each puzzle is in its own folder, to keep them separated and organized. Feel free to browse through them!
