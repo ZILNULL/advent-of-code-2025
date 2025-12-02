@@ -17,8 +17,8 @@ from pathlib import Path
 import puzzle2
 
 
-def test_check_validity():
-    print("BEGINNING VALIDITY FUNCTION CHECK\n===========================")
+def test_check_validity_part1():
+    print("BEGINNING VALIDITY (PART 1) FUNCTION CHECK\n===========================")
     valid_ids = ["1", "20", "1234", "8263", "9876", "1239865243927", "678678678"]
     invalid_ids = [
         "9999",
@@ -32,12 +32,40 @@ def test_check_validity():
 
     print("CHECKING CORRECT IDs: ")
     for i in valid_ids:
-        valid: bool = puzzle2.check_validity(i)
+        valid: bool = puzzle2.check_validity_part1(i)
         print(f"Checking {i}: {valid}")
 
     print("\nCHECKING INCORRECT IDs: ")
     for i in invalid_ids:
-        valid: bool = puzzle2.check_validity(i)
+        valid: bool = puzzle2.check_validity_part1(i)
+        print(f"Checking {i}: {valid}")
+
+    print("\n\n")
+    return
+
+
+def test_check_validity_part2():
+    print("BEGINNING VALIDITY (PART 2) FUNCTION CHECK\n===========================")
+    valid_ids = ["1", "20", "1234", "8263", "9876", "1239865243927"]
+    invalid_ids = [
+        "9999",
+        "1212",
+        "1234512345",
+        "98179817",
+        "11",
+        "121212121212",
+        "1188511885",
+        "678678678",
+    ]
+
+    print("CHECKING CORRECT IDs: ")
+    for i in valid_ids:
+        valid: bool = puzzle2.check_validity_part2(i)
+        print(f"Checking {i}: {valid}")
+
+    print("\nCHECKING INCORRECT IDs: ")
+    for i in invalid_ids:
+        valid: bool = puzzle2.check_validity_part2(i)
         print(f"Checking {i}: {valid}")
 
     print("\n\n")
@@ -51,6 +79,6 @@ def test_small_input():
 
 
 if __name__ == "__main__":
-    test_check_validity()
+    test_check_validity_part2()
     input()
     test_small_input()

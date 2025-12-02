@@ -4,23 +4,35 @@
 
 This is the second day of Advent of Code, which deals with checking various product ID
 ranges in order to figure out information. Valid IDs are only the ones that do not have
-any repeated sequences of numbers.
+any sequence of digits that is repeated twice.
 
-Example of valid IDs: 12345, 7263, 901934...
-Example of invalid IDs: 9999, 6060, 543543...
+Example of valid IDs: 12345, 7263, 901934, 111...
+Example of invalid IDs: 9999, 6060, 543543, 11...
 
 Part 1:
     Find all the invalid IDs and find their combined sum.
+
+Part 2:
+    Now, it will be considered in valid if the sequence of digits is repeated any
+    given number of twice. For example, 111 would be invalid.
 """
 
 from pathlib import Path
 from typing import List, Tuple
 
 
-def check_validity(prod_id: str) -> bool:
+def split_string_by_length(s: str, l: int) -> List[str]:
+    """
+    Takes any given string and splits it in chunks of maximum l length.
+    """
+    chunks: List[str] = [s[i : i + l] for i in range(0, len(s), l)]
+    return chunks
+
+
+def check_validity_part1(prod_id: str) -> bool:
     """
     This function checks whether a given id is entirely made up of a repeating
-    sequence of characters or not.
+    sequence of characters or not. Only checks if the sequence repeats twice.
     """
     length: int = len(prod_id)
     half: int = int(length / 2)
@@ -28,9 +40,32 @@ def check_validity(prod_id: str) -> bool:
     return valid
 
 
+def check_validity_part2(prod_id: str) -> bool:
+    """
+    Same as check_validity_part1, but checks for any arbitrary number of repeats.
+    """
+    length: int = len(prod_id)
+    half: int = int(length / 2)
+    if length == 1:
+        return True
+
+    valid = True
+    for i in range(half):
+        seq_idx = length - 1 - i
+        if prod_id[0] != prod_id[seq_idx]:
+            continue
+
+        sub_seq = split_string_by_length(prod_id, i + 1)
+        if len(set(sub_seq)) == 1:
+            valid = False
+            break
+
+    return valid
+
+
 def obtain_range_limits(range_str: str) -> Tuple[int, int]:
     """
-    Obtain the minimum and maximum number of a range given a sequence of characters
+    Obtain the minimum and maximum number (of a range given a sequence of characters
     X-Y, where both X and Y are included.
     """
     limits: List[str] = range_str.split("-")
@@ -65,7 +100,7 @@ def solve_puzzle_part1(file: Path) -> int:
         nums = obtain_all_nums(r_min, r_max)
 
         for n in nums:
-            if not check_validity(n):
+            if not check_validity_part2(n):
                 total += int(n)
 
     print(f"The total of every invalid ID is: {total}")
