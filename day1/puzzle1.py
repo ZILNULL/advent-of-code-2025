@@ -16,7 +16,6 @@ Part 2:
 """
 
 from pathlib import Path
-from typing import Tuple
 
 
 def change_value(curr_num: int, change_val: int) -> int:
@@ -27,7 +26,7 @@ def change_value(curr_num: int, change_val: int) -> int:
     return new_num
 
 
-def count_zero_clicks(curr_num: int, change_val: int) -> Tuple[int, int]:
+def count_zero_clicks(curr_num: int, change_val: int) -> tuple[int, int]:
     """
     Count the amount of times that zero has been clicked in a given rotation.
     """
@@ -108,4 +107,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    _ = main()

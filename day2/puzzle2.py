@@ -18,14 +18,13 @@ Part 2:
 """
 
 from pathlib import Path
-from typing import List, Tuple
 
 
-def split_string_by_length(s: str, l: int) -> List[str]:
+def split_string_by_length(s: str, l: int) -> list[str]:
     """
     Takes any given string and splits it in chunks of maximum l length.
     """
-    chunks: List[str] = [s[i : i + l] for i in range(0, len(s), l)]
+    chunks: list[str] = [s[i : i + l] for i in range(0, len(s), l)]
     return chunks
 
 
@@ -63,36 +62,36 @@ def check_validity_part2(prod_id: str) -> bool:
     return valid
 
 
-def obtain_range_limits(range_str: str) -> Tuple[int, int]:
+def obtain_range_limits(range_str: str) -> tuple[int, int]:
     """
     Obtain the minimum and maximum number (of a range given a sequence of characters
     X-Y, where both X and Y are included.
     """
-    limits: List[str] = range_str.split("-")
+    limits: list[str] = range_str.split("-")
     min: int = int(limits[0])
     max: int = int(limits[1])
     return (min, max)
 
 
-def obtain_all_nums(min: int, max: int) -> List[str]:
+def obtain_all_nums(min: int, max: int) -> list[str]:
     """
     Obtain all the numbers in a given range, casted to string for character comparison.
     """
-    nums: List[int] = list(range(min, max + 1))
-    nums_str: List[str] = [str(x) for x in nums]
+    nums: list[int] = list(range(min, max + 1))
+    nums_str: list[str] = [str(x) for x in nums]
     return nums_str
 
 
-def read_input(file: Path) -> List[str]:
+def read_input(file: Path) -> list[str]:
     with open(file, "r") as f:
-        lines: List[str] = f.readlines()
+        lines: list[str] = f.readlines()
 
-    input: List[str] = lines[0].split(",")
+    input: list[str] = lines[0].split(",")
     return input
 
 
 def solve_puzzle_part1(file: Path) -> int:
-    ranges: List[str] = read_input(file)
+    ranges: list[str] = read_input(file)
 
     total: int = 0
     for r in ranges:
@@ -109,9 +108,9 @@ def solve_puzzle_part1(file: Path) -> int:
 
 def main():
     file_name = Path(__file__).parent.resolve() / "input.txt"
-    solve_puzzle_part1(file_name)
+    _ = solve_puzzle_part1(file_name)
     return 0
 
 
 if __name__ == "__main__":
-    main()
+    _ = main()

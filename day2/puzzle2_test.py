@@ -14,7 +14,7 @@ THIS FILE CONTAINS ALL THE TESTS FOR puzzle2.py
 
 from pathlib import Path
 
-import puzzle2
+from day2 import puzzle2
 
 
 def test_check_validity_part1():
@@ -37,7 +37,7 @@ def test_check_validity_part1():
 
     print("\nCHECKING INCORRECT IDs: ")
     for i in invalid_ids:
-        valid: bool = puzzle2.check_validity_part1(i)
+        valid = puzzle2.check_validity_part1(i)
         print(f"Checking {i}: {valid}")
 
     print("\n\n")
@@ -65,7 +65,7 @@ def test_check_validity_part2():
 
     print("\nCHECKING INCORRECT IDs: ")
     for i in invalid_ids:
-        valid: bool = puzzle2.check_validity_part2(i)
+        valid = puzzle2.check_validity_part2(i)
         print(f"Checking {i}: {valid}")
 
     print("\n\n")
@@ -74,11 +74,11 @@ def test_check_validity_part2():
 
 def test_small_input():
     file_name = Path(__file__).parent.resolve() / "input_test.txt"
-    puzzle2.solve_puzzle_part1(file_name)
+    _ = puzzle2.solve_puzzle_part1(file_name)
     return
 
 
 if __name__ == "__main__":
     test_check_validity_part2()
-    input()
+    _ = input()
     test_small_input()
